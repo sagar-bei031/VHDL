@@ -1,0 +1,11 @@
+# Ignore simulation and tool-generated files
+*.mti
+*.mpf
+transcript
+*.wlf
+work/
+
+# Ignore backup and temporary files
+*~
+*.bak
+*.log
