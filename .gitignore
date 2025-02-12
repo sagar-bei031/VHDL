@@ -3,6 +3,7 @@
 *.mpf
 transcript
 *.wlf
+wlf*
 work/
 
 # Ignore backup and temporary files
