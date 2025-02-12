@@ -14,10 +14,19 @@ architecture sim of T16_PortMapTb is
 
     signal Sel: unsigned(1 downto 0) := (others => '0');
     
-    signal Output1 : unsigned(7 downto 0);
-    signal Output2 : unsigned(7 downto 0);
+    signal Output : unsigned(7 downto 0);
 
 begin 
+
+    -- An instance of T15_Mux with architecture rtl
+    i_Mux1: entity work.T16_Mux(rtl) port map(
+        Sel => Sel,
+        Sig1 => Sig1,
+        Sig2 => Sig2,
+        Sig3 => Sig3,
+        Sig4 => Sig4,
+        Output => Output
+    );
 
     process is
     begin
@@ -28,42 +37,5 @@ begin
         end loop;
 
     end process;
-
-    -- Mux using if-then-else
-    process(Sel, Sig1, Sig2, Sig3, Sig4) is
-    begin
-
-        if Sel = "00" then
-            Output1 <= Sig1;
-        elsif Sel = "01" then
-            Output1 <= Sig2;
-        elsif Sel = "10" then
-            Output1 <= Sig3;
-        elsif Sel = "11" then
-            Output1 <= Sig4;
-        else
-            Output1 <= (others => 'X');
-        end if;
-
-    end process;
-
-    -- Mux using if-then-else
-    process(Sel, Sig1, Sig2, Sig3, Sig4) is
-        begin
-    
-            case Sel is
-                when "00" =>
-                    Output2 <= Sig1;
-                when "01" =>
-                    Output2 <= Sig2;
-                when "10" =>
-                    Output2 <= Sig3;
-                when "11" =>
-                    Output2 <= Sig4;
-                when others =>
-                    Output2 <= (others => 'X');
-            end case;
-    
-        end process;
 
 end architecture;

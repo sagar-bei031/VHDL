@@ -2,10 +2,10 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity T15_TestWhenTb is
+entity T15_CaseWhenTb is
 end entity;
     
-architecture sim of T15_TestWhenTb is
+architecture sim of T15_CaseWhenTb is
 
     signal Sig1 : unsigned(7 downto 0) := x"AA";
     signal Sig2 : unsigned(7 downto 0) := x"BB";
@@ -47,23 +47,23 @@ begin
 
     end process;
 
-    -- Mux using if-then-else
+    -- Mux using case when
     process(Sel, Sig1, Sig2, Sig3, Sig4) is
-        begin
+    begin
     
-            case Sel is
-                when "00" =>
-                    Output2 <= Sig1;
-                when "01" =>
-                    Output2 <= Sig2;
-                when "10" =>
-                    Output2 <= Sig3;
-                when "11" =>
-                    Output2 <= Sig4;
-                when others =>
-                    Output2 <= (others => 'X');
-            end case;
+        case Sel is
+            when "00" =>
+                Output2 <= Sig1;
+            when "01" =>
+                Output2 <= Sig2;
+            when "10" =>
+                Output2 <= Sig3;
+            when "11" =>
+                Output2 <= Sig4;
+            when others =>
+                Output2 <= (others => 'X');
+        end case;
     
-        end process;
+    end process;
 
 end architecture;
